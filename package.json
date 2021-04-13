@@ -1,0 +1,26 @@
+{
+  "name": "es6-react",
+  "version": "2.1.0",
+  "scripts": {
+    "start": "webpack-dev-server --hot -d",
+    "build": "webpack -p"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.13.13",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.57",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-tooltip": "^4.2.17"
+  }
+}
