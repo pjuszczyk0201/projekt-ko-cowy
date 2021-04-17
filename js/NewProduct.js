@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import { Alert } from '@material-ui/lab'
+import { Alert } from '@material-ui/lab';
 
-const NewProduct = () => {
+const NewProduct = ({addProduct}) => {
     const [name, setName] = useState('');
     const [quantity, setQuantity] = useState('');
     const [unit, setUnit] = useState('szt');
@@ -22,10 +22,16 @@ const NewProduct = () => {
         }
         setError(errorsArray);
         if (errorsArray.length === 0) {
+            const product = {
+                name,
+                quantity,
+                unit
+            };
+            addProduct (product);
             setName('');
             setQuantity('');
         }
-
+        console.log("product", product);
     }
 
 

@@ -1,22 +1,15 @@
 import React from 'react';
 import Products from "./Products";
+import {List} from "@material-ui/core";
 
-const ProductsList = () => {
-    {Products, toggleBoughtFn, clearListFn}: {items: Product[], toggleBoughtFn: Function, clearListFn: Function}
-) => {
-
-        const handleClearList = () => clearListFn();
-
-        return (
-            <Container maxWidth={"md"}>
-                <List>
-                    {Products.map( (prod: Product) => <Products key={prod.id} Products={prod} toggleBoughtFn={toggleBoughtFn}/>)}
-                </List>
-                {Products.length > 0 && <Button variant="contained" onClick={handleClearList}>Clear</Button>}
-            </Container>
-        );
-    }
-
+const ProductsList = ({products}) => {
+    return (
+        <List>
+            {products.map(product =>(
+                <Products name={product.name} quantity={product.quantity} unit={product.unit} />
+                ))}
+        </List>
+    );
 };
 
 export default ProductsList;
