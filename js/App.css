@@ -1,0 +1,80 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: lightsteelblue;
+}
+header {
+    text-align: center;
+    padding: 20px;
+}
+.headerIcon {
+    margin-left: 10px;
+}
+
+.newForm  {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: lightsteelblue;
+    margin: 60px auto;
+
+}
+.newProductInput {
+    width: 500px;
+    margin-bottom: 20px;
+    height: 50px;
+}
+.newList{
+    background-color: lightsteelblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.listItem {
+    background-color: lightgray;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.productList {
+    width: 800px;
+    background-color: lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: red;
+}
+
+.editForm {
+    background-color: lavenderblush;
+    width: 800px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.inputEdit {
+    margin-right: 10px;
+    width: 200px;
+    height: 30px;
+
+}
+
+button.delete {
+    margin-top: 30px;
+    margin-left: 50px;
+}

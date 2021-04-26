@@ -1,14 +1,44 @@
 import React from 'react';
 import Products from "./Products";
 import {List} from "@material-ui/core";
+import DeleteIcon from '@material-ui/icons/Delete';
+import Button from '@material-ui/core/Button';
 
-const ProductsList = ({products}) => {
+const ProductsList = ({products, setProducts, clearList}) => {
+
+    const handlerClearList = () => clearList();
+
+
     return (
-        <List>
-            {products.map(product =>(
-                <Products name={product.name} quantity={product.quantity} unit={product.unit} />
-                ))}
-        </List>
+        <>
+            <List className="newList">
+            {
+                products.map((product) =>{
+                    return (
+                        <Products
+                            key={product.id}
+                            setProducts={setProducts}
+                            products={products}
+                            product={product}
+                            name={product.name}
+                            quantity={product.quantity}
+                            unit={product.unit}
+                        />
+                        )
+                    }
+                )
+            }
+            </List>
+            {products.length > 0 &&
+            <Button className="delete"
+                onClick={handlerClearList}
+                variant="contained"
+                color="secondary"
+                startIcon={<DeleteIcon/>}
+            >
+            wyszyść listę
+            </Button>}
+        </>
     );
 };
 

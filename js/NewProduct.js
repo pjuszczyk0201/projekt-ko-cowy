@@ -1,13 +1,19 @@
 import React, {useState} from 'react';
-import { Alert } from '@material-ui/lab';
+import {Alert} from '@material-ui/lab';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
 
-const NewProduct = ({addProduct}) => {
+const NewProduct = ({addProduct, products}) => {
     const [name, setName] = useState('');
     const [quantity, setQuantity] = useState('');
-    const [unit, setUnit] = useState('szt');
+    const [unit, setUnit] = useState('');
     const [error, setError] = useState([]);
 
-    const handleSubmit = (e) => {
+    const handlerSubmit = (e) => {
         e.preventDefault();
         const errorsArray = [];
 
@@ -20,49 +26,22 @@ const NewProduct = ({addProduct}) => {
         } else if (Number(quantity) <= 0) {
             errorsArray.push('liczba musi być dodatnia');
         }
-        setError(errorsArray);
+
+        setError(errorsArray); //useEffect
         if (errorsArray.length === 0) {
             const product = {
                 name,
                 quantity,
-                unit
+                unit,
+                id: products.length+1
             };
             addProduct (product);
             setName('');
             setQuantity('');
+            setUnit('');
         }
-        console.log("product", product);
     }
 
-
-    const styleForm = {
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: "40px",
-        backgroundColor: "lightgray",
-        width: "860px",
-
-    }
-    const styleInput = {
-        padding: "10px",
-        marginBottom: "10px",
-        width: "500px",
-    }
-    const selectStyle = {
-        width: "250px",
-        padding: "5px",
-    }
-
-    const buttonStyle = {
-        alignSelf: "flex-end",
-        padding: "10px",
-        backgroundColor: "orange",
-        width: "100px",
-        borderStyle: "none",
-        outline: "none"
-    }
 
     let errorsJsx = null;
     if (error.length > 0) {
@@ -70,47 +49,49 @@ const NewProduct = ({addProduct}) => {
     }
 
     return (
-        <form style={styleForm} onSubmit={handleSubmit}>
+        <form className="newForm" onSubmit={handlerSubmit}>
             {errorsJsx}
-            <div className="form-group">
-            <input
+            <TextField className="newProductInput"
                 type = "text"
-                placeholder= "produkt"
-                style={styleInput}
                 value={name}
                 onChange={e => setName (e.target.value)}
+                id="standard-textarea"
+                label="produkt"
+                multiline
             >
-            </input>
-            </div>
-            <div className="form-group">
-                <input
+            </TextField>
+                <TextField className="newProductInput"
                     type = "number"
-                    placeholder= "ilość"
-                    style={styleInput}
                     value={quantity}
                     onChange={e => setQuantity(e.target.value)}
+                    id="standard-textarea"
+                    label="ilość"
+                    multiline
                 >
-                </input>
-            </div>
-            <div className="form-group"
-                 style={styleInput}
-            >
-                <select
-                    style={selectStyle}
+                </TextField>
+            <FormControl className="formControl">
+            <InputLabel id="demo-simple-select-label">Jednostka</InputLabel>
+            <Select className="newProductInput"
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
                     value={unit}
                     onChange={e => setUnit(e.target.value)}
                 >
-                    <option value={"dkg"}>dkg</option>
-                    <option value={"kg"}>kg</option>
-                    <option value={"szt"}>szt</option>
-                    <option value={"opk"}>opk</option>
-                </select>
-            </div>
-            <button type={"submit"}
-            style={buttonStyle}
-            >Add</button>
+                    <MenuItem value={"dkg"}>dkg</MenuItem>
+                    <MenuItem value={"kg"}>kg</MenuItem>
+                    <MenuItem value={"szt"}>szt</MenuItem>
+                    <MenuItem value={"opk"}>opk</MenuItem>
+            </Select>
+            </FormControl>
+            <Button
+                type={"submit"}
+                variant="outlined"
+                color="primary">
+                Dodaj do koszyka
+            </Button>
         </form>
     );
 };
 
 export default NewProduct;
+
