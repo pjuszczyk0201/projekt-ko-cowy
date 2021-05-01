@@ -6,8 +6,19 @@ import {MdAddShoppingCart} from "react-icons/md";
 
 
 const Header = () => {
+
+    const headerStyle = {
+        width: "520px",
+        height: "100px",
+        borderRadius: "10px",
+        backgroundColor: "rosybrown",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+}
+
     return (
-        <AppBar className="header" position="static">
+        <AppBar className="header" position="static" style={headerStyle}>
             <Toolbar>
                 <Container maxWidth={"md"}>
                     <Typography variant={"h6"}>

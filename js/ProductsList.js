@@ -8,6 +8,12 @@ const ProductsList = ({products, setProducts, clearList}) => {
 
     const handlerClearList = () => clearList();
 
+    const deleteButtonStyle = {
+        display: "flex",
+        alignItems: "flex-start",
+        marginLeft: "10px",
+        marginTop: "15px"
+    }
 
     return (
         <>
@@ -31,6 +37,7 @@ const ProductsList = ({products, setProducts, clearList}) => {
             </List>
             {products.length > 0 &&
             <Button className="delete"
+                style={deleteButtonStyle}
                 onClick={handlerClearList}
                 variant="contained"
                 color="secondary"

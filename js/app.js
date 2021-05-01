@@ -5,7 +5,6 @@ import Header from "./Header"
 import ProductsList from "./ProductsList";
 
 
-
 const App =() => {
     const [products, setProducts] = useState(() =>{
         const emptyList = [];
@@ -15,6 +14,11 @@ const App =() => {
         }
         return emptyList;
     })
+
+    useEffect(() => {
+        localStorage.setItem('productList', JSON.stringify(products));
+    }, [products]);
+
 
     const addProduct = product => {
         setProducts(prevProducts => {
@@ -28,15 +32,13 @@ const App =() => {
         setProducts([])
     }
 
-    useEffect(() => {
-        localStorage.setItem('productList', JSON.stringify(products));
-    }, [products]);
-
     return (
         <>
             <Header/>
-            <NewProduct addProduct={addProduct} products={products}/>
-            <ProductsList setProducts={setProducts} products={products} clearList={clearList}/>
+            <div className="container">
+                <NewProduct addProduct={addProduct} products={products}/>
+                <ProductsList setProducts={setProducts} products={products} clearList={clearList}/>
+            </div>
         </>
     );
 }

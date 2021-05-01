@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./js/app.js",
+  entry: ["whatwg-fetch", `./js/app.js`],
   output: {
     filename: "out.js",
     path: path.resolve(__dirname, "build")
@@ -11,7 +11,9 @@ module.exports = {
     publicPath: "/build/",
     compress: true,
     port: 3001,
-    historyApiFallback: true
+    historyApiFallback: true,
+    open: true,
+    clientLogLevel: "silent"
   },
   module: {
     rules: [
